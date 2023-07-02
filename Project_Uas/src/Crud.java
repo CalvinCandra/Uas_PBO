@@ -1,10 +1,7 @@
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.ArrayList;
 
 abstract class Crud {
 	public ArrayList<Makanan> listMakanan = new ArrayList<Makanan>();
-	public Scanner scan = new Scanner(System.in);
 	
 	public abstract void tambahMenu(Makanan listMakanan);
 	public abstract void updateMenu(int nomor, Makanan listMakanan);
