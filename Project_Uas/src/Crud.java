@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+interface Test{
+	public void test();
+} 
+
 abstract class Crud {
 	public ArrayList<Makanan> listMakanan = new ArrayList<Makanan>();
 	
@@ -13,7 +17,9 @@ abstract class Crud {
 			int HargaDiskon = totalHarga - diskon;
 			
 			System.out.println("============================ TOTAL PEMBAYARAN =============================");
+			System.out.println("Total Harga : " +totalHarga);
 			System.out.println("Selamat Anda Mendapatkan Diskon Sebesar 20%");
+			
 			System.out.println("\nTotal pembayaran Anda Menjadi : Rp. " +HargaDiskon);
 			System.out.println("======================== TERIMA KASIH =========================");
 		}else if(totalHarga >= 50000) {
@@ -21,6 +27,7 @@ abstract class Crud {
 			int HargaDiskon = totalHarga - diskon;
 			
 			System.out.println("============================ TOTAL PEMBAYARAN =============================");
+			System.out.println("Total Harga : " +totalHarga);
 			System.out.println("Selamat Anda Mendapatkan Diskon Sebesar 10%");
 			System.out.println("\nTotal pembayaran Anda Menjadi : Rp. " +HargaDiskon);
 			System.out.println("======================== TERIMA KASIH =========================");
@@ -33,7 +40,9 @@ abstract class Crud {
 	
 }
 
-class Turunan extends Crud{
+
+
+class Turunan extends Crud implements Test{
 
 	@Override
 	public void tambahMenu(Makanan listMakanan) {
@@ -51,5 +60,12 @@ class Turunan extends Crud{
 		listMakanan.remove(nomor-1);
 		System.out.println("Menu Makanan Berhasil Di Delete");
 	}
+
+	@Override
+	public void test() {
+		System.out.println("Ini Merupakan Teks Dari Override Method Test Pada Interface");
+		
+	}
+
 
 }

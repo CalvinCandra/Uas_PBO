@@ -4,7 +4,8 @@ import java.util.Scanner;
 public class Main {
 
 	public static Scanner scan = new Scanner(System.in);
-	public static Crud proses = new Turunan();
+	public static Turunan proses = new Turunan();
+//	public static test_1 test = new test_1();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -28,6 +29,9 @@ public class Main {
 					break;
 				case 4:
 					transaksi();
+					break;
+				case 5:
+					proses.test();
 					break;
 				default:
 					System.out.println("Inputan Salah Silakan Pilih Angka 1-3");
@@ -54,10 +58,15 @@ public class Main {
 		Makanan makan2 = new Makanan("Ayam Geprek", 10000);
 		Makanan makan3 = new Makanan("Ayam Bakar", 15000);
 		
+		Makanan test = new Makanan ();
+		test.SetNamaMakanan("Ayam Guling");
+		test.SetHarga(10000);
+		
 		//tambah ke dalam arraylist		
 		proses.listMakanan.add(makan1);
 		proses.listMakanan.add(makan2);
 		proses.listMakanan.add(makan3);
+		proses.listMakanan.add(test);
 	}
 	
 	
@@ -83,6 +92,7 @@ public class Main {
 		System.out.println("2. Update Menu");
 		System.out.println("3. Delete Menu");
 		System.out.println("4. Transaksi");
+		System.out.println("5. Panggil Interface");
 		System.out.println("Masukan Opsi : "); 
 		
 		//variabel untuk melakukan perulangan		
@@ -104,7 +114,7 @@ public class Main {
 				
 				pilih = scan.nextInt();
 				
-				if(pilih > 4 || pilih < 0) {
+				if(pilih > 5 || pilih < 0) {
 					throw new Exception("Nomor Menu Tidak Ada");
 				}
 				
@@ -124,7 +134,9 @@ public class Main {
 	public static void tambahMenu() {
 		System.out.println("Anda Memilih Pilihan Tambah Menu");
 		
+		// membuat hashset dengan nama variabel cek		
 		 HashSet<String> cek = new HashSet<String>();
+		 //memasukan elemen elemen array ke dalam variabel cek		 
 		 for(Makanan makan : proses.listMakanan) {
 				cek.add(makan.getNamaMakanan());
 			}
@@ -208,22 +220,23 @@ public class Main {
 	    		// Jika Inputan Harga Kosong, maka Data Yang Sebelumnnya Tetap Ada dan akan diubah menjadi data tipe String	
 	    		if (hargaMakanan.isEmpty()) {
 	    			hargaMakanan = Integer.toString(proses.listMakanan.get(nomor-1).getHarga());
+	    		}else {	    			
+	    			boolean isValid = false;
+	    			
+	    			// perulangan dengan kondisi tidak sama dengan isValid (jika isValid true maka perulangan selesai)	        	
+	    			while(!isValid) {
+	    				try {
+	    					Integer.parseInt(hargaMakanan);
+	    					isValid = true;
+	    				} catch (NumberFormatException e) {
+	    					System.out.println("Input Harga harus berupa angka!");
+	    					System.out.print("Masukan Harga Makanan Baru : ");
+	    					hargaMakanan = scan.nextLine();
+	    				}
+	    			}
 	    		}
 	    		
 	    		// membuat variabel untuk melakukan validasi    	
-	    		boolean isValid = false;
-	    		
-	    		// perulangan dengan kondisi tidak sama dengan isValid (jika isValid true maka perulangan selesai)	        	
-	    		while(!isValid) {
-	    			try {
-	    				Integer.parseInt(hargaMakanan);
-	    				isValid = true;
-	    			} catch (NumberFormatException e) {
-	    				System.out.println("Input Harga harus berupa angka!");
-	    				System.out.print("Masukan Harga Makanan Baru : ");
-	    				hargaMakanan = scan.nextLine();
-	    			}
-	    		}
 	    		
 	    		int harga = Integer.parseInt(hargaMakanan);
 	    		
